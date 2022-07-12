@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :venues
-  resources :games
+  resources :games, only: [:index, :show]
   resources :events
+  resources :users, only: [:create, :destroy]
+  resources :venues
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }
-      
+  
+  
 end
