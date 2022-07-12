@@ -1,9 +1,8 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-    
 
 function SignInForm() {
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     username: "",
     password: ""
   })
@@ -12,10 +11,9 @@ function SignInForm() {
       let target = event.target;
       let value = target.type === "checkbox" ? target.checked : target.value;
       let name = target.name;
-  
-      this.setState({
+      setFormData((formData) => ({...formData,
         [name]: value
-      });
+      }));
     }
   
     function handleSubmit(event) {
@@ -23,13 +21,17 @@ function SignInForm() {
       console.log("The form was submitted with the following data:");
       console.log(this.state);
     }
-    
 
   return (
+    <div className="App">
+        <div className="appForm">
+        <div className="formTitle">
+        <h2>Welcome to Game Booker</h2>
+        </div>
       <div className="formCenter">
         <form className="formFields" onSubmit={handleSubmit}>
           <div className="formField">
-            <label className="formFieldLabel" htmlFor="username">
+            <label className="formFieldLabel">
               Username
             </label>
             <input
@@ -38,13 +40,12 @@ function SignInForm() {
               className="formFieldInput"
               placeholder="Enter your username"
               name="username"
-              value={form.username}
+              value={formData.username}
               onChange={handleChange}
             />
           </div>
-
           <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
+            <label className="formFieldLabel">
               Password
             </label>
             <input
@@ -53,18 +54,21 @@ function SignInForm() {
               className="formFieldInput"
               placeholder="Enter your password"
               name="password"
-              value={form.password}
+              value={formData.password}
               onChange={handleChange}
             />
           </div>
-
           <div className="formField">
             <button className="formFieldButton">Sign In</button>{" "}
+            <br></br>
+            <br></br>
             <Link to="/sign-up" className="formFieldLink">
               Create an account
             </Link>
           </div>
         </form>
+      </div>
+      </div>
       </div>
     )
   }

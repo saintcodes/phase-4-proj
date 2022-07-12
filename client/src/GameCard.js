@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import NewGameForm from './NewGameForm'
+import NewEventForm from './NewEventForm'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import {useHistory} from 'react-router-dom'

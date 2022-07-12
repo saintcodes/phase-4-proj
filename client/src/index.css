@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #6b5b10
+  background-color: #6b5b95
   ;
 }
 
@@ -17,11 +17,15 @@ code {
 .navbar{
   width: 100%;
   max-height: 19vh;
+  font-size: 100%;
+  padding: 0px 0px;
+  font-weight: 10250;
+  margin-bottom: 50px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #eee;
+  align-items: left;
+  background-color: #12130f;
   transition: all .7s ease-in;
   position: fixed; 
   top: 0;
@@ -29,7 +33,7 @@ code {
 
 .cards {
   list-style: none;
-  background-color: #c6e0ff;
+  background-color: #6b5b95;
   align-items: center;
   align-self: center;
   align-content: center;
@@ -146,16 +150,17 @@ body {
 }
 
 .formTitle {
-  color: #707c8b;
+  color: #f7f1ff;
   font-weight: 50;
   margin-bottom: 50px;
 }
 
 .formTitleLink {
-  color: #707c8b;
+  color: #6b5b95;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3em;
   text-decoration: none;
   display: inline-block;
-  font-size: 1.7em;
   margin: 0 10px;
   padding-bottom: 5px;
 }

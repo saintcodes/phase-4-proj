@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Nav from "react-bootstrap/Nav"
-import logo from './images/tix.png'
+// import logo from './images/tix.png'
 
 function Navigate() {
 
@@ -17,15 +17,13 @@ function Navigate() {
         /> */}
         <br></br>
           <Nav.Link 
-            // activeclassName="formTitleLink-active"
             className="formTitleLink"
-            href="/auth"
+            href="/"
           > 
-            Log In
+            Home
           </Nav.Link>
           <br></br>
           <Nav.Link 
-            // activeclassName="formTitleLink-active"
             className="formTitleLink"
             href="/games"
           > 
@@ -33,12 +31,17 @@ function Navigate() {
           </Nav.Link>
           <br></br>
           <Nav.Link 
-            // activeclassName="formTitleLink-active"
             className="formTitleLink"
             href="/create"
           >
             Create a Game
           </Nav.Link>
+          {/* <Nav.Link 
+            className="formTitleLink"
+            href="/sign-in"
+          >
+            Sign In
+          </Nav.Link> */}
         </Nav>
       </Container>
     </div>

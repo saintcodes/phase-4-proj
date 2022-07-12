@@ -2,9 +2,11 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css';
 import Navigate from "./Navigate";
-import Login from "./Login";
-import NewGameForm from "./NewGameForm";
+import Home from "./Home";
+import NewEventForm from "./NewEventForm";
 import Games from "./Games";
+import SignInForm from "./SignInForm";
+
 
 function App() {
 
@@ -13,14 +15,17 @@ function App() {
       <div className="App">
         <Navigate />
           <Switch>
-            <Route exact path="/auth">
-              <Login />
+            <Route exact path="/">
+              <Home />
             </Route>
             <Route exact path="/games">
               <Games />
             </Route>
             <Route exact path="/create">
-              <NewGameForm />
+              <NewEventForm />
+            </Route>
+            <Route exact path="/sign-in">
+              <SignInForm />
             </Route>
           </Switch>
       </div>
