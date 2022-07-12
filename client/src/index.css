@@ -157,8 +157,9 @@ body {
 
 .formTitleLink {
   color: #6b5b95;
+  font-weight: 100;
   font-family: "Roboto", sans-serif;
-  font-size: 1.3em;
+  font-size: 1.1em;
   text-decoration: none;
   display: inline-block;
   margin: 0 10px;
