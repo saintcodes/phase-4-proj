@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css';
 import Navigate from "./Navigate";
@@ -6,10 +6,13 @@ import Home from "./Home";
 import NewEventForm from "./NewEventForm";
 import Games from "./Games";
 import SignInForm from "./SignInForm";
-
+import Events from "./Events"
 
 function App() {
+  const [user, setUser] = useState("")
 
+  // if (!user) return <Games />
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,8 +27,14 @@ function App() {
             <Route exact path="/create">
               <NewEventForm />
             </Route>
+            <Route exact path="/games/:id">
+              <Events />
+            </Route>
             <Route exact path="/sign-in">
-              <SignInForm />
+              <SignInForm 
+                user={user} 
+                setUser={setUser}
+              />
             </Route>
           </Switch>
       </div>

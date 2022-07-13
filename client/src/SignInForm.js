@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useHistory} from "react";
 import { Link } from "react-router-dom";
 
-function SignInForm() {
+function SignInForm({user, setUser, onLogin}) {
+  const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     password: ""
   })
 
-    function handleChange(event) {
-      let target = event.target;
+    function handleChange(e) {
+      let target = e.target;
       let value = target.type === "checkbox" ? target.checked : target.value;
       let name = target.name;
       setFormData((formData) => ({...formData,
@@ -16,11 +17,27 @@ function SignInForm() {
       }));
     }
   
-    function handleSubmit(event) {
-      event.preventDefault();
-      console.log("The form was submitted with the following data:");
-      console.log(this.state);
-    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((user) => onLogin(user));
+          } else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        })
+        setFormData({
+          username: "",
+          password: ""
+        })
+      }
 
   return (
     <div className="App">
@@ -65,6 +82,13 @@ function SignInForm() {
             <Link to="/sign-up" className="formFieldLink">
               Create an account
             </Link>
+            <br></br>
+            <br></br>
+            <>
+            {errors.map((err) => (
+              <div>{err}</div>
+            ))}
+            </>
           </div>
         </form>
       </div>

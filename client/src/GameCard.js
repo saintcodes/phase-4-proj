@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import NewEventForm from './NewEventForm'
+// import NewEventForm from './NewEventForm'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import {useHistory} from 'react-router-dom'
@@ -10,9 +10,10 @@ function GameCard({game, selectedGame}) {
 
   function routeChange(e) {
     let id = e.target.id
-    let path = `game/${id}`
+    let path = `games/${id}`
+    console.log(path)
     history.push(path)
-    selectedGame(id)
+    // selectedGame(id)
   }
 
   return (
