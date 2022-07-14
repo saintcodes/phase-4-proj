@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form} from 'react-bootstrap';
 
-function NewEventForm() {
+function NewEventForm({user, setUser}) {
   const [formData, setFormData] = useState({
     "game": "",
     "venue": "",

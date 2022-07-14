@@ -4,16 +4,15 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import {useHistory} from 'react-router-dom'
 
-function GameCard({game, selectedGame}) {
+function GameCard({game, selectedGameEvents}) {
   const {name, image, no_of_players, id} = game;
   const history = useHistory();
 
   function routeChange(e) {
     let id = e.target.id
-    let path = `games/${id}`
-    console.log(path)
+    let path = `games/${id}/events`
+    selectedGameEvents(id)
     history.push(path)
-    // selectedGame(id)
   }
 
   return (
@@ -30,7 +29,7 @@ function GameCard({game, selectedGame}) {
               variant="primary"
               onClick={routeChange}
               >
-                Show Games
+                Show Events
             </Button>
             <br></br>
           </Card.Body>
