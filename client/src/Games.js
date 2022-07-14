@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import GameCard from "./GameCard";
 
-function Games({ isLoggedIn, selectedGameEvents }) {
+function Games({ user, isLoggedIn, selectedGameEvents }) {
   const [games, setGames] = useState([]);
-  // const [events, setEvents] = useState([]);
 
   useEffect(() => {
     fetch("/games")
@@ -11,19 +10,16 @@ function Games({ isLoggedIn, selectedGameEvents }) {
       .then((games) => setGames(games));
   }, []);
 
-  // function selectedGameEvents(gameId) {
-  //   let nid = parseInt(gameId);
-  //   fetch(`/events/${nid}`)
-  //     .then((res) => res.json())
-  //     .then(setEvents(events.filter((event) => nid === event.game_id)));
-  // }
 
   console.log("is logged in games: ", isLoggedIn);
+
   return (
     <div>
       <div className="App">
         <div className="appForm">
           <div className="formTitle">
+            <h2>All Games</h2>
+            {console.log(user)}
             <div className="cards">
               {games.length > 0 &&
                 games.map((game) => (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, BrowserRouter, useHistory } from "react-router-dom";
 
-function Home({ user, handleLogOut, onLogin }) {
+function Home({ setIsLoggedIn, isLoggedIn, user, handleLogOut, onLogin }) {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const [signUpForm, setSignUpForm] = useState({
@@ -29,11 +29,12 @@ function Home({ user, handleLogOut, onLogin }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        setIsLoggedIn((isLoggedIn) => !isLoggedIn)
+        history.push("/games");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    history.push("/games");
   }
 
   return (
@@ -41,11 +42,8 @@ function Home({ user, handleLogOut, onLogin }) {
       <div className="App">
         <div className="appForm">
           <div className="formTitle">
-            <div className="pageSwitcher">
               <br></br>
               <br></br>
-             
-            </div>
             <h2>Welcome to Game Booker</h2>
             <span>
               Create a free account below!
@@ -100,6 +98,11 @@ function Home({ user, handleLogOut, onLogin }) {
                 </a>
               </div>
             </form>
+            <>
+                {errors.map((err) => (
+                  <div key={err}>{err}</div>
+                ))}
+              </>
           </div>
         </div>
       </div>

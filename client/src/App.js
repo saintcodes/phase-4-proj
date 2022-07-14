@@ -14,8 +14,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [welcome, setWelcome] = useState(false);
   const history = useHistory();
-// console.log("app: ", isLoggedIn)
-  // const { gameId } = useParams();
+
+  console.log("isloggedIn from app: ", isLoggedIn)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -25,7 +25,6 @@ function App() {
     });
   }, []);
 
-  // if (!user) return <Home onLogin={setUser} />;
   function handleLogOut() {
     fetch("/logout", {
       method: "DELETE",
@@ -45,11 +44,19 @@ function App() {
 
   function selectedGameEvents(gameId) {
     let nid = parseInt(gameId);
-    fetch(`/events/${nid}`)
+    console.log(nid === 1)
+    fetch(`/games/${nid}`)
       .then((res) => res.json())
-      .then(setEvents(events.filter((event) => nid === event.game_id)))
-      .then(console.log(events))
+      .then(events => {
+        setEvents(events.events)
+      })
   }
+  
+  // function handleSetEvent (events) {
+  //   setEvents(events)
+  //   console.log("outside fetch: ", events)
+  // }
+
 
   return (
     <BrowserRouter>
@@ -57,18 +64,27 @@ function App() {
         <div className="appForm">
           <div className="formTitle">
             {isLoggedIn && (
-              <Navigate welcome={welcome} user={user} setUser={setUser} />
+              <Navigate 
+                isLoggedIn={isLoggedIn} 
+                setIsLoggedIn={setIsLoggedIn} 
+                welcome={welcome} 
+                user={user} 
+                setUser={setUser} 
+              />
             )}
             <Switch>
               <Route exact path="/">
                 <Home 
                   user={user} 
                   onLogin={handleLogIn} 
+                  isLoggedIn={isLoggedIn} 
+                  setIsLoggedIn={setIsLoggedIn}
                   handleLogOut={handleLogOut} 
                 />
               </Route>
               <Route exact path="/games">
                 <Games 
+                  user={user} 
                   isLoggedIn={isLoggedIn} 
                   selectedGameEvents={selectedGameEvents}
                 />
@@ -77,10 +93,12 @@ function App() {
                 <NewEventForm 
                   user={user} 
                   setUser={setUser} 
+                  isLoggedIn={isLoggedIn}
                 />
               </Route>
               <Route exact path="/games/:gameId/events">
                 <Events 
+                  user={user}
                   events={events}
                 />
               </Route>

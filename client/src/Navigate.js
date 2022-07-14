@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 
-function Navigate({ welcome, user, setUser }) {
-  // const { username } = user;
+function Navigate({ setIsLoggedIn, isLoggedIn, welcome, user, setUser }) {
   const history = useHistory();
 
   function handleLogoutClick() {
@@ -17,6 +15,8 @@ function Navigate({ welcome, user, setUser }) {
         history.push("/");
       }
     });
+    setIsLoggedIn((isLoggedIn) => !isLoggedIn)
+    console.log(isLoggedIn)
   }
 
   return (
@@ -32,9 +32,9 @@ function Navigate({ welcome, user, setUser }) {
             <Nav.Link className="formTitleLink" href="/create">
               Create a Game
             </Nav.Link>
-            <Button variant="outline" onClick={handleLogoutClick}>
+            <Nav.Link className="formTitleLink" onClick={handleLogoutClick} href="/">
               Logout
-            </Button>
+            </Nav.Link>
           </Nav>
         </Container>
       )}
