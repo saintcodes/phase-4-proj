@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, BrowserRouter, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Home({ setIsLoggedIn, isLoggedIn, user, handleLogOut, onLogin }) {
   const [errors, setErrors] = useState([]);

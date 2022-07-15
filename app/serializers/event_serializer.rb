@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :game_id, :venue_id, :venue_info, :user_id, :date, :time, :game_info
+  attributes :id, :game_id, :venue_id, :venue_info, :user_name, :user_id, :date, :time, :game_info
   belongs_to :venue
 
   # belongs_to :user
@@ -11,6 +11,9 @@ class EventSerializer < ActiveModel::Serializer
     self.object.game
   end
 
+  def user_name
+    self.object.user.username
+  end
 
 
 end

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Login({ user, setUser, onLogin, setIsLoggedIn, isLoggedIn }) {
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     password: ""
   });
-  const history = useHistory();
 
 console.log("login page: ", isLoggedIn)
+
   function handleChange(e) {
     let target = e.target;
     let value = target.type === "checkbox" ? target.checked : target.value;
@@ -52,6 +53,7 @@ console.log("login page: ", isLoggedIn)
           <br></br>
           <br></br>
           <h2>Log In to Game Booker</h2>
+          <br></br>
         </div>
         <div className="formCenter">
           <form className="formFields" onSubmit={handleSubmit}>

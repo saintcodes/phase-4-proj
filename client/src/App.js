@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, useHistory, useParams } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
 import "./App.css";
 import Navigate from "./Navigate";
 import Home from "./Home";
@@ -9,11 +9,12 @@ import LogIn from "./LogIn";
 import Events from "./Events";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [welcome, setWelcome] = useState(false);
   const history = useHistory();
+  const [rerender, setRerender] = useState(false);
 
   console.log("isloggedIn from app: ", isLoggedIn)
 
@@ -25,6 +26,10 @@ function App() {
     });
   }, []);
 
+  if (!user) return <Home onLogin={setUser} />;
+  
+  console.log(user, isLoggedIn)
+  
   function handleLogOut() {
     fetch("/logout", {
       method: "DELETE",
@@ -51,12 +56,6 @@ function App() {
         setEvents(events.events)
       })
   }
-  
-  // function handleSetEvent (events) {
-  //   setEvents(events)
-  //   console.log("outside fetch: ", events)
-  // }
-
 
   return (
     <BrowserRouter>
@@ -69,7 +68,7 @@ function App() {
                 setIsLoggedIn={setIsLoggedIn} 
                 welcome={welcome} 
                 user={user} 
-                setUser={setUser} 
+                setUser={setUser}
               />
             )}
             <Switch>
@@ -99,6 +98,7 @@ function App() {
               <Route exact path="/games/:gameId/events">
                 <Events 
                   user={user}
+                  setEvents={setEvents}
                   events={events}
                 />
               </Route>

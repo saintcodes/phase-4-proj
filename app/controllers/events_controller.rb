@@ -23,8 +23,12 @@ class EventsController < ApplicationController
     # render json: event.to_json(include: [:game, :venue]), status: :ok
     # render json: event.to_json(include: [:venue]), status: :ok
     render json: event, status: :ok
-  
-    
   end
   
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    head :no_content
+  end
+
 end
