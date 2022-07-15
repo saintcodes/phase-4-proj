@@ -9,8 +9,6 @@ function Login({ user, setUser, onLogin, setIsLoggedIn, isLoggedIn }) {
     password: ""
   });
 
-console.log("login page: ", isLoggedIn)
-
   function handleChange(e) {
     let target = e.target;
     let value = target.type === "checkbox" ? target.checked : target.value;
@@ -32,7 +30,6 @@ console.log("login page: ", isLoggedIn)
       if (r.ok) {
         r.json().then((user) => onLogin(user));
         setIsLoggedIn((isLoggedIn) => !isLoggedIn);
-        console.log("from login?: ", isLoggedIn)
         history.push("/games")
       } else {
         r.json().then((err) => setErrors(err.errors));

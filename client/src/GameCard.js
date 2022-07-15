@@ -17,14 +17,15 @@ function GameCard({game, selectedGameEvents}) {
 
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" 
-        src={image}
-        />
+      <Card className="formFieldInput1" style={{ width: '19rem'}}>
+        <br></br>
+        <Card.Title className="formFieldLabel1">{name}</Card.Title>
+        <Card.Title className="formFieldLabel2">Required players: {no_of_players}</Card.Title>
+        <br></br>
+        <Card.Img variant="top" src={image}/>
           <Card.Body>
-            <Card.Title>{name}</Card.Title>
-            <Card.Title>Required players: {no_of_players}</Card.Title>
             <Button 
+              className="formFieldButton1"
               id={id} 
               variant="primary"
               onClick={routeChange}

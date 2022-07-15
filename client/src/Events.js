@@ -1,12 +1,9 @@
 import React from "react";
 import EventCard from "./EventCard";
 
-function Events({ user, events, setEvents}) {
-  // const {name, no_of_players, events} = events
-  // let individualEvents = events.events
+function Events({ user, events, renderUpdatedEvents }) {
 
   let gameName = events.map((event) => event.game_info.name);
-  console.log(events);
 
   return (
     <div>
@@ -17,7 +14,7 @@ function Events({ user, events, setEvents}) {
             <div className="cards">
               {events ? events.map((event) => {
                 return <EventCard 
-                  setEvents={setEvents}
+                  renderUpdatedEvents={renderUpdatedEvents}
                   event={event} 
                   user={user}
                   key={event.id} 

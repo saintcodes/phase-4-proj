@@ -16,29 +16,38 @@ function Navigate({ setIsLoggedIn, isLoggedIn, welcome, user, setUser }) {
       }
     });
     setIsLoggedIn((isLoggedIn) => !isLoggedIn)
-    console.log(isLoggedIn)
   }
 
   return (
-    <div className="navbar">
+    <Container>
       {user && (
-        <Container>
-          <Nav className="navbar">
-            <br></br>
-            {welcome ? `Welcome back, ${user.username}!` : ""}
-            <Nav.Link className="formTitleLink" href="/games">
-              All Games
-            </Nav.Link>
-            <Nav.Link className="formTitleLink" href="/create">
-              Create a Game
-            </Nav.Link>
-            <Nav.Link className="formTitleLink" onClick={handleLogoutClick} href="/">
-              Logout
-            </Nav.Link>
-          </Nav>
-        </Container>
+        <Nav className="navbar">
+          <br></br>
+            <span className="formTitleLink2">
+              Welcome back, {user.username}!
+            </span> 
+          <Nav.Link 
+            className="formTitleLink3" 
+            href="/games"
+          >
+            All Games
+          </Nav.Link>
+          <Nav.Link 
+            className="formTitleLink3" 
+            href="/create"
+          >
+            Create New Event
+          </Nav.Link>
+          <Nav.Link 
+            className="formTitleLink3" 
+            onClick={handleLogoutClick} 
+            href="/"
+          >
+            Logout
+          </Nav.Link>
+        </Nav>
       )}
-    </div>
+    </Container>
   );
 }
 

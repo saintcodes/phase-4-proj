@@ -40,8 +40,8 @@ venue7 = Venue.create(location: 'Flatiron Club')
 
 puts "Seeding events..."
 Event.create(game_id: game1.id, venue_id: venue1.id, user_id: user1.id, date: "06/25/2022", time: "09:00AM")
-Event.create(game_id: game1.id, venue_id: venue2.id, user_id: user3.id, date: "09/25/2022", time: "12:00PM")
-Event.create(game_id: game1.id, venue_id: venue3.id, user_id: user5.id, date: "10/25/2022", time: "03:00PM")
+Event.create(game_id: game1.id, venue_id: venue2.id, user_id: user1.id, date: "09/25/2022", time: "12:00PM")
+Event.create(game_id: game1.id, venue_id: venue3.id, user_id: user1.id, date: "10/25/2022", time: "03:00PM")
 Event.create(game_id: game1.id, venue_id: venue4.id, user_id: user6.id, date: "11/25/2022", time: "06:00PM")
 Event.create(game_id: game2.id, venue_id: venue2.id, user_id: user11.id, date: "06/25/2022", time: "09:00AM")
 Event.create(game_id: game3.id, venue_id: venue3.id, user_id: user8.id, date: "06/25/2022", time: "12:00PM")

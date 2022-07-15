@@ -15,7 +15,6 @@ function Home({ setIsLoggedIn, isLoggedIn, user, handleLogOut, onLogin }) {
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
     setSignUpForm({ ...signUpForm, [name]: value });
-    console.log(name, value);
   }
 
   function handleSubmit(e) {
@@ -35,6 +34,10 @@ function Home({ setIsLoggedIn, isLoggedIn, user, handleLogOut, onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+  }
+
+  function handleTOS () {
+    alert('too late now, no turning back...')
   }
 
   return (
@@ -85,7 +88,7 @@ function Home({ setIsLoggedIn, isLoggedIn, user, handleLogOut, onLogin }) {
                     onChange={handleChange}
                   />{" "}
                   I have read and acknowledge the statements in the{" "}
-                  <a href="null" className="formFieldTermsLink">
+                  <a href="" onClick={handleTOS} className="formFieldTermsLink">
                     terms of service
                   </a>
                 </label>

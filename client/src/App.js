@@ -14,9 +14,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [welcome, setWelcome] = useState(false);
   const history = useHistory();
-  const [rerender, setRerender] = useState(false);
-
-  console.log("isloggedIn from app: ", isLoggedIn)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -26,9 +23,7 @@ function App() {
     });
   }, []);
 
-  if (!user) return <Home onLogin={setUser} />;
-  
-  console.log(user, isLoggedIn)
+  // if (!user) return <Home onLogin={setUser} />;
   
   function handleLogOut() {
     fetch("/logout", {
@@ -44,12 +39,10 @@ function App() {
   function handleLogIn(user) {
     setUser(user);
     setWelcome((welcome) => !welcome);
-    console.log(user);
   }
 
   function selectedGameEvents(gameId) {
     let nid = parseInt(gameId);
-    console.log(nid === 1)
     fetch(`/games/${nid}`)
       .then((res) => res.json())
       .then(events => {
@@ -57,12 +50,20 @@ function App() {
       })
   }
 
+  const renderUpdatedEvents = (nid) => {
+    fetch(`/games/${nid}`)
+      .then((res) => res.json())
+      .then((events)=> setEvents(events.events))
+      history.push(`/games/${nid}/events`)
+  }
+
+
   return (
     <BrowserRouter>
       <div className="App">
         <div className="appForm">
           <div className="formTitle">
-            {isLoggedIn && (
+            {user && (
               <Navigate 
                 isLoggedIn={isLoggedIn} 
                 setIsLoggedIn={setIsLoggedIn} 
@@ -98,8 +99,8 @@ function App() {
               <Route exact path="/games/:gameId/events">
                 <Events 
                   user={user}
-                  setEvents={setEvents}
                   events={events}
+                  renderUpdatedEvents={renderUpdatedEvents}
                 />
               </Route>
               <Route exact path="/log-in">

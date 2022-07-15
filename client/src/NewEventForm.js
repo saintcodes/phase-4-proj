@@ -10,13 +10,10 @@ function NewEventForm({isLoggedIn, user, setUser}) {
   })
 
   function handleChange(e) {
-    console.log(e.target)
     const {name, value} = e.target
-    console.log(name, value)
     setFormData((formData) => ({...formData,
       [name]: value
     }));
-    console.log(formData)
   }
 
   function handleSubmit(e) {
